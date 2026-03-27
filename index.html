@@ -511,7 +511,7 @@
   }
 
   .week-accordion.open .week-detail {
-    max-height: 700px;
+    max-height: 1100px;
     opacity: 1;
   }
 
@@ -576,6 +576,158 @@
     background: var(--gold-glow);
     border-left: 2px solid var(--gold);
     margin-top: 4px;
+  }
+
+  /* ── Curriculum meta bar ── */
+  .curriculum-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .curriculum-meta-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .curriculum-meta-item::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* ── Phase separator ── */
+  .week-phase-sep {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+
+  .week-phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .week-phase-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+    opacity: 0.4;
+  }
+
+  .week-phase-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* ── Networking section ── */
+  .networking-section {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px;
+  }
+
+  .networking-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 52px;
+    background: var(--border);
+  }
+
+  .network-card {
+    background: var(--bg3);
+    padding: 44px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .network-card:hover { background: var(--bg4); }
+
+  .network-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .network-card:hover::before { transform: scaleX(1); }
+
+  .network-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .network-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .network-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .network-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .network-quote {
+    margin-top: 52px;
+    padding: 32px 40px;
+    background: var(--gold-glow);
+    border-left: 2px solid var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(240,236,228,0.75);
+  }
+
+  @media (max-width: 768px) {
+    .networking-section { padding: 64px 20px; }
+    .networking-inner { grid-template-columns: 1fr; }
+    .network-card { padding: 32px 24px; }
+    .curriculum-meta { gap: 12px; }
+    .week-phase-sep { padding: 28px 0 4px; }
   }
 
   /* ══════════ OUTCOMES ══════════ */
@@ -1463,13 +1615,24 @@
 
 <!-- ══════════ CURRICULUM ══════════ -->
 <section class="curriculum-section" id="curriculum">
-  <div class="sec-label">4주 커리큘럼</div>
+  <div class="sec-label">전체 커리큘럼</div>
   <h2 class="sec-title">매주, 바로 쓸 수 있는<br>도구를 손에 넣습니다.</h2>
-  <p style="font-size:14px; color:var(--muted); max-width:480px; line-height:1.8; margin-top:4px;">
-    클래스가 끝날 때마다 실제 결과물이 남습니다. 배운 내용을 다음 날부터 바로 사업에 적용할 수 있습니다.
-  </p>
+  <div class="curriculum-meta">
+    <span class="curriculum-meta-item">매주 1회</span>
+    <span class="curriculum-meta-item">2.5시간</span>
+    <span class="curriculum-meta-item">이론 50분</span>
+    <span class="curriculum-meta-item">실습 60분</span>
+    <span class="curriculum-meta-item">Q&A 10분</span>
+  </div>
 
   <div class="week-list">
+
+    <!-- ─ PHASE 1 ─ -->
+    <div class="week-phase-sep">
+      <span class="week-phase-label">4주 — AI CEO 과정</span>
+      <div class="week-phase-line"></div>
+      <span class="week-phase-badge">AI 자동화 · 사업 적용</span>
+    </div>
 
     <!-- WEEK 1 -->
     <div class="week-item week-accordion" data-week="1">
@@ -1477,24 +1640,31 @@
       <div class="week-main">
         <div class="week-header">
           <div>
-            <div class="week-title">내 사업의 AI 지도 그리기</div>
-            <p class="week-desc">어디에 AI를 붙이면 가장 빠른 효과가 날까? 업종별 AI 적용 사례와 나만의 자동화 지점을 찾습니다.</p>
+            <div class="week-title">AI 툴 왕초보 입문 + 내 사업 지도 그리기</div>
+            <p class="week-desc">AI가 뭔지부터 시작합니다. ChatGPT·Claude·Gemini 차이를 정리하고, 내 사업에서 AI를 붙일 지점을 찾습니다.</p>
           </div>
           <div class="week-right">
-            <div class="week-tag">진단 · 전략</div>
+            <div class="week-tag">입문 · 전략</div>
             <div class="week-chevron">﹢</div>
           </div>
         </div>
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <div class="detail-block-title">🎓 이론 50분</div>
               <ul class="detail-list">
-                <li>AI가 실제로 업무에서 하는 일 — 환상 vs 현실 정리</li>
-                <li>내 사업의 "시간 낭비 지점" 3가지 찾는 법</li>
-                <li>ChatGPT / Claude / Gemini — 언제 뭘 쓸까?</li>
-                <li>업종별 AI 적용 성공·실패 사례 분석</li>
-                <li>대표님 맞춤 AI 도입 우선순위 설정하기</li>
+                <li>AI가 뭔지부터 — "말 잘 듣는 직원"으로 이해하기</li>
+                <li>ChatGPT / Claude / Gemini / Copilot 차이 한 번에 정리</li>
+                <li>생성형 AI / 자동화 AI / 이미지 AI — 3가지로 끝내기</li>
+                <li>유료 vs 무료, 대표님은 뭘 써야 하나</li>
+                <li>프롬프트란 무엇인가 — 잘 시키는 것이 전부다</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>ChatGPT / Claude 계정 만들고 첫 대화 해보기</li>
+                <li>프롬프트 공식 실습 — 역할 + 상황 + 요청 + 형식</li>
+                <li>내 사업 소개글 AI로 써보기 (비교 실습)</li>
+                <li>내 하루 업무 중 AI 대체 가능한 것 찾기</li>
               </ul>
             </div>
             <div class="detail-block">
@@ -1502,10 +1672,10 @@
               <div class="tool-tags">
                 <span class="tool-tag">ChatGPT</span>
                 <span class="tool-tag">Claude</span>
-                <span class="tool-tag">Notion AI</span>
+                <span class="tool-tag">Gemini</span>
               </div>
               <div class="detail-block-title">🎯 수업 후 결과물</div>
-              <p class="detail-note">내 사업 맞춤 AI 활용 로드맵 1장</p>
+              <p class="detail-note">내 사업 AI 활용 로드맵 1장</p>
             </div>
           </div>
         </div>
@@ -1529,13 +1699,19 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <div class="detail-block-title">🎓 이론 50분</div>
               <ul class="detail-list">
-                <li>프롬프트 설계 기초 — 대표님처럼 일하는 AI 만들기</li>
-                <li>견적서 · 제안서 초안을 3분 안에 완성하는 템플릿</li>
-                <li>인스타 · 블로그 · 뉴스레터 콘텐츠 자동 생성 워크플로우</li>
-                <li>고객 문의 응대 자동화 (이메일 / 카카오채널)</li>
-                <li>Zapier / Make 없이 가능한 무료 자동화 루틴</li>
+                <li>자동화란 무엇인가 — 대표님 시간을 돌려주는 구조</li>
+                <li>견적서·제안서·보고서 AI 초안 작성법</li>
+                <li>SNS 콘텐츠 한 달치 30분 만에 뽑는 방법</li>
+                <li>고객 응대 자동화 — 이메일·카카오채널 세팅</li>
+                <li>Zapier / Make 없이도 가능한 무료 자동화 루틴</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>내 사업 견적서 초안 AI로 3분 만에 완성하기</li>
+                <li>인스타·블로그 콘텐츠 자동 생성 워크플로우 만들기</li>
+                <li>자동 응대 메시지 템플릿 10개 뽑기</li>
               </ul>
             </div>
             <div class="detail-block">
@@ -1561,7 +1737,7 @@
         <div class="week-header">
           <div>
             <div class="week-title">나만의 AI 직원 만들기</div>
-            <p class="week-desc">우리 회사 말투와 지식으로 대답하는 맞춤형 AI 챗봇 · 도구를 코딩 없이 직접 구축합니다.</p>
+            <p class="week-desc">우리 회사 말투와 지식으로 대답하는 맞춤형 AI 챗봇·도구를 코딩 없이 직접 구축합니다.</p>
           </div>
           <div class="week-right">
             <div class="week-tag">구축 실습</div>
@@ -1571,13 +1747,19 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <div class="detail-block-title">🎓 이론 50분</div>
               <ul class="detail-list">
                 <li>Custom GPT 만들기 — 우리 회사 전용 AI 비서 설정</li>
                 <li>회사 내부 문서·FAQ를 학습시킨 AI 지식베이스 구축</li>
                 <li>노코드로 AI 미니앱 만들기 (견적, 상담, 안내 등)</li>
                 <li>완성된 도구를 팀원·고객에게 공유하는 방법</li>
                 <li>유지보수 없이 운영하는 AI 시스템 설계 원칙</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>우리 회사 전용 Custom GPT 직접 만들기</li>
+                <li>회사 FAQ 문서 업로드 후 테스트</li>
+                <li>Bolt / v0으로 AI 미니앱 첫 화면 구현</li>
               </ul>
             </div>
             <div class="detail-block">
@@ -1603,7 +1785,7 @@
         <div class="week-header">
           <div>
             <div class="week-title">AI 시스템 완성 & 사업 발표</div>
-            <p class="week-desc">3주간 구축한 AI 시스템을 사업에 완전히 이식합니다. 발표 + 피드백 세션으로 마무리.</p>
+            <p class="week-desc">AI 도입 효과를 측정하고, 팀 전체로 확산시키는 법을 배웁니다. 수강생 사업 발표로 마무리.</p>
           </div>
           <div class="week-right">
             <div class="week-tag">적용 · 발표</div>
@@ -1613,13 +1795,18 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <div class="detail-block-title">🎓 이론 50분</div>
               <ul class="detail-list">
-                <li>AI 도입 전/후 시간·비용 비교 측정하는 법</li>
-                <li>팀원에게 AI 도구 전파하는 내부 교육 설계</li>
-                <li>AI 시스템이 망가졌을 때 대응하는 법</li>
-                <li>수강생 사업 발표 — 3주간 만든 것 공유 & 피드백</li>
-                <li>앞으로의 AI 트렌드와 대표님이 준비해야 할 것</li>
+                <li>AI 도입 전후 시간·비용 측정하는 법</li>
+                <li>팀원한테 AI 전파하는 내부 교육 설계</li>
+                <li>AI 시스템이 망가졌을 때 대처법</li>
+                <li>앞으로 2년, 대표님이 준비해야 할 AI 트렌드</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>수강생 각자 사업 적용 결과 발표 (5분씩)</li>
+                <li>전체 피드백 + 개선 포인트 제안</li>
+                <li>수료 후 혼자 계속하는 법 — 루틴 설계</li>
               </ul>
             </div>
             <div class="detail-block">
@@ -1638,7 +1825,228 @@
       </div>
     </div>
 
+    <!-- ─ PHASE 2 ─ -->
+    <div class="week-phase-sep">
+      <span class="week-phase-label">8주 — AI 풀코스 (5~8주차)</span>
+      <div class="week-phase-line"></div>
+      <span class="week-phase-badge">CEO 4주 수료 후 이어지는 과정</span>
+    </div>
+
+    <!-- WEEK 5 -->
+    <div class="week-item week-accordion" data-week="5">
+      <div class="week-num-col"><div class="week-num">05</div></div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">앱 기획 — 아이디어를 구조로</div>
+            <p class="week-desc">앱 vs 웹앱 vs 챗봇, 내 아이디어엔 뭐가 맞을까? PRD 작성부터 와이어프레임까지 한 번에.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">기획 실습</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">🎓 이론 50분</div>
+              <ul class="detail-list">
+                <li>앱 vs 웹앱 vs 챗봇 — 내 아이디어엔 뭐가 맞나</li>
+                <li>좋은 앱 기획서 vs 나쁜 앱 기획서 비교</li>
+                <li>사용자 페르소나 — 누구를 위한 앱인가</li>
+                <li>비개발자가 개발자 없이 앱 만드는 현실적인 방법</li>
+                <li>답답노트 앱 제작 실제 과정 공개</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>내 앱 아이디어 1장으로 정리하기 (PRD 작성)</li>
+                <li>AI로 와이어프레임 5분 만들기</li>
+                <li>사용자 페르소나 작성 실습</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">Claude</span>
+                <span class="tool-tag">Figma</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">앱 기획서 + AI 와이어프레임</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 6 -->
+    <div class="week-item week-accordion" data-week="6">
+      <div class="week-num-col"><div class="week-num">06</div></div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">노코드 AI로 앱 첫 화면 만들기</div>
+            <p class="week-desc">Bolt·v0 등 AI 개발 툴로 기획서를 실제 화면으로 옮깁니다. 코딩 한 줄 없이 작동하는 앱을 만듭니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">개발 실습</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">🎓 이론 50분</div>
+              <ul class="detail-list">
+                <li>Bolt / v0 / Cursor — AI 개발 툴 3가지 비교</li>
+                <li>프롬프트로 화면 만드는 원리 이해하기</li>
+                <li>컴포넌트 구조 — 버튼·카드·리스트 감 잡기</li>
+                <li>AI가 실수했을 때 수정 요청하는 법</li>
+                <li>데이터베이스 없이 앱 만드는 현실적 방법</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>Bolt로 내 앱 메인 화면 직접 만들기</li>
+                <li>디자인 수정 반복 실습 (프롬프트로 피드백)</li>
+                <li>수강생 간 화면 공유 & 피드백</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">Bolt</span>
+                <span class="tool-tag">v0</span>
+                <span class="tool-tag">Cursor</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">작동하는 앱 메인 화면 프로토타입</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 7 -->
+    <div class="week-item week-accordion" data-week="7">
+      <div class="week-num-col"><div class="week-num">07</div></div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">핵심 기능 완성 & 베타 테스트</div>
+            <p class="week-desc">앱의 핵심 기능 2가지를 완성하고, 수강생 간 교차 테스트로 실제 사용성을 검증합니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">기능 완성</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">🎓 이론 50분</div>
+              <ul class="detail-list">
+                <li>MVP란 무엇인가 — 핵심 기능 2개만 먼저 완성하는 이유</li>
+                <li>사용자 테스트 하는 법 — 뭘 물어봐야 하나</li>
+                <li>버그 수정 원칙 — AI에게 오류 설명하는 방법</li>
+                <li>앱 속도·안정성 기초 점검</li>
+                <li>출시 전 체크리스트 20가지</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>핵심 기능 2개 완성 집중 실습</li>
+                <li>수강생 간 앱 교차 테스트 & 피드백</li>
+                <li>버그·개선 사항 정리 후 AI로 수정</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">Bolt</span>
+                <span class="tool-tag">v0</span>
+                <span class="tool-tag">Claude</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">기능이 작동하는 앱 베타버전</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 8 -->
+    <div class="week-item week-accordion" data-week="8">
+      <div class="week-num-col"><div class="week-num">08</div></div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">출시 + 수익화</div>
+            <p class="week-desc">실제로 배포하고, 결제를 연결하고, 랜딩페이지까지 만듭니다. 앱스토어가 아니어도 출시할 수 있습니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">배포 · 수익</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">🎓 이론 50분</div>
+              <ul class="detail-list">
+                <li>배포란 무엇인가 — 앱스토어 vs 웹 배포 차이</li>
+                <li>결제 기능 연결 원리 — 무료→유료 전환 구조</li>
+                <li>내 앱 홍보 전략 — 랜딩페이지 30분 만들기</li>
+                <li>앱 출시 후 유지·업데이트 하는 법</li>
+                <li>수익화 모델 3가지 — 구독 / 일회성 / 광고</li>
+              </ul>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <ul class="detail-list">
+                <li>웹 배포 직접 해보기 (Vercel / Netlify)</li>
+                <li>결제 기능 연결 실습 (Stripe 기초)</li>
+                <li>내 앱 랜딩페이지 AI로 30분 만들기</li>
+                <li>수강생 앱 최종 발표 + 피드백 세션</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">Vercel</span>
+                <span class="tool-tag">Netlify</span>
+                <span class="tool-tag">Stripe</span>
+                <span class="tool-tag">Claude</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">실제 배포된 내 앱 + 8주 수료증</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</section>
+
+<!-- ══════════ NETWORKING ══════════ -->
+<section class="networking-section">
+  <div class="sec-label">함께하는 것들</div>
+  <h2 class="sec-title">강의실 밖에서<br>더 많은 것을 얻습니다.</h2>
+  <div class="networking-inner reveal">
+    <div class="network-card">
+      <span class="network-icon">🍽</span>
+      <div class="network-title">매주 네트워킹 디너</div>
+      <p class="network-desc">매 수업 후, 같은 고민을 가진 대표님들과 저녁 한 끼. 강의에서 못 다한 이야기, 사업 고민, 협업 기회까지 — 밥 한 끼에 다 담깁니다.</p>
+      <div class="network-note">식사비 별도 · 장소 추후 안내</div>
+    </div>
+    <div class="network-card">
+      <span class="network-icon">💬</span>
+      <div class="network-title">수강생 전용 단톡방</div>
+      <p class="network-desc">수업 사이, 막히는 것이 생겼을 때 바로 질문할 수 있는 공간. 강사와 수강생이 함께 답하는 실시간 채널입니다. 수료 후에도 계속 이어집니다.</p>
+      <div class="network-note">수료 후에도 유지</div>
+    </div>
+  </div>
+  <blockquote class="network-quote reveal">
+    "같은 고민을 가진 대표님들과 저녁 한 끼.<br>
+    강의실 밖에서 더 많은 것을 얻어가실 수 있습니다."
+  </blockquote>
 </section>
 
 <!-- ══════════ OUTCOMES ══════════ -->
