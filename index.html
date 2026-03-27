@@ -1013,6 +1013,22 @@
     flex-shrink: 0;
   }
 
+  .inst-stat-text { display: flex; flex-direction: column; justify-content: center; }
+  .inst-stat-project-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .inst-stat-project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
   .inst-career { display: flex; flex-direction: column; gap: 28px; margin-bottom: 44px; }
 
   .inst-career-item { display: flex; gap: 20px; align-items: flex-start; }
@@ -2131,7 +2147,7 @@
         코딩을 한 줄도 몰랐습니다. IT 전공도 아니었습니다.
         영어 강사로 시작해 AI 도구만으로 앱을 개발하고,
         강의 매출을 500% 끌어올렸습니다.
-        대표님들이 어디서 막히는지 — 직접 겪었기에 정확히 압니다.
+        초보자의 관점에서 차근차근 알려드리겠습니다.
       </p>
 
       <div class="inst-stats">
@@ -2140,14 +2156,14 @@
           <div class="inst-stat-label">기존 대비 매출 증가</div>
         </div>
         <div class="inst-stat-divider"></div>
-        <div class="inst-stat">
-          <div class="inst-stat-num">1000<span class="inst-stat-unit">만+</span></div>
-          <div class="inst-stat-label">AI 강의 월 매출</div>
+        <div class="inst-stat inst-stat-text">
+          <div class="inst-stat-project-title">처음부터 끝까지 어플 제작</div>
+          <div class="inst-stat-project-link">답답노트 페이지</div>
         </div>
         <div class="inst-stat-divider"></div>
-        <div class="inst-stat">
-          <div class="inst-stat-num">0<span class="inst-stat-unit">줄</span></div>
-          <div class="inst-stat-label">코딩 경험</div>
+        <div class="inst-stat inst-stat-text">
+          <div class="inst-stat-project-title">영어교육 시스템 직접 제작</div>
+          <div class="inst-stat-project-link">잉즈 페이지</div>
         </div>
       </div>
 
