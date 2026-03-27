@@ -708,15 +708,12 @@
     background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 60%);
   }
 
-  .photo-icon { font-size: 44px; opacity: 0.15; position: relative; }
-
-  .photo-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    color: var(--muted2);
-    text-transform: uppercase;
-    position: relative;
+  .instructor-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .instructor-links { display: flex; flex-direction: column; gap: 8px; }
@@ -1672,8 +1669,7 @@
   <div class="instructor-inner reveal">
     <div>
       <div class="instructor-photo-box">
-        <span class="photo-icon">👤</span>
-        <span class="photo-text">사진 추가 예정</span>
+        <img src="instructor.png" alt="김해나 강사" class="instructor-photo">
       </div>
       <div class="instructor-links">
         <a href="https://gambak-note.pages.dev/" target="_blank" class="inst-link-btn">📱 답답노트 앱 보기 →</a>
