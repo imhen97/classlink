@@ -1508,38 +1508,6 @@
   }
 
   /* ══════════ FOOTER ══════════ */
-  /* ── Floating Side Nav ── */
-  .side-nav {
-    position: fixed;
-    right: 20px;
-    top: 120px;
-    z-index: 900;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .side-nav-link {
-    display: block;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 12px 6px;
-    border-right: 2px solid var(--border);
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .side-nav-link:hover,
-  .side-nav-link.active {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-  @media (max-width: 768px) {
-    .side-nav { display: none; }
-  }
-
   footer {
     padding: 28px 80px;
     border-top: 1px solid var(--border);
@@ -1689,6 +1657,7 @@
     <a href="#curriculum">커리큘럼</a>
     <a href="#instructor">강사 소개</a>
     <a href="#pricing">수강료</a>
+    <a href="#faq">Q&amp;A</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="nav-cta">수강 신청</a>
   </div>
 </nav>
@@ -1761,9 +1730,9 @@
   <h2 class="sec-title">매주, 바로 쓸 수 있는<br>도구를 손에 넣습니다.</h2>
   <div class="curriculum-meta">
     <span class="curriculum-meta-item">매주 1회</span>
-    <span class="curriculum-meta-item">2.5시간</span>
-    <span class="curriculum-meta-item">이론 50분</span>
-    <span class="curriculum-meta-item">실습 60분</span>
+    <span class="curriculum-meta-item">3시간</span>
+    <span class="curriculum-meta-item">이론 2시간</span>
+    <span class="curriculum-meta-item">실습 50분</span>
     <span class="curriculum-meta-item">Q&A 10분</span>
   </div>
 
@@ -1793,7 +1762,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>AI가 뭔지부터 — "말 잘 듣는 직원"으로 이해하기</li>
                 <li>ChatGPT / Claude / Gemini / Copilot 차이 한 번에 정리</li>
@@ -1801,7 +1770,7 @@
                 <li>유료 vs 무료, 대표님은 뭘 써야 하나</li>
                 <li>프롬프트란 무엇인가 — 잘 시키는 것이 전부다</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>ChatGPT / Claude 계정 만들고 첫 대화 해보기</li>
                 <li>프롬프트 공식 실습 — 역할 + 상황 + 요청 + 형식</li>
@@ -1841,7 +1810,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>자동화란 무엇인가 — 대표님 시간을 돌려주는 구조</li>
                 <li>견적서·제안서·보고서 AI 초안 작성법</li>
@@ -1849,7 +1818,7 @@
                 <li>고객 응대 자동화 — 이메일·카카오채널 세팅</li>
                 <li>Zapier / Make 없이도 가능한 무료 자동화 루틴</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>내 사업 견적서 초안 AI로 3분 만에 완성하기</li>
                 <li>인스타·블로그 콘텐츠 자동 생성 워크플로우 만들기</li>
@@ -1889,7 +1858,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>Custom GPT 만들기 — 우리 회사 전용 AI 비서 설정</li>
                 <li>회사 내부 문서·FAQ를 학습시킨 AI 지식베이스 구축</li>
@@ -1897,7 +1866,7 @@
                 <li>완성된 도구를 팀원·고객에게 공유하는 방법</li>
                 <li>유지보수 없이 운영하는 AI 시스템 설계 원칙</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>우리 회사 전용 Custom GPT 직접 만들기</li>
                 <li>회사 FAQ 문서 업로드 후 테스트</li>
@@ -1937,14 +1906,14 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>AI 도입 전후 시간·비용 측정하는 법</li>
                 <li>팀원한테 AI 전파하는 내부 교육 설계</li>
                 <li>AI 시스템이 망가졌을 때 대처법</li>
                 <li>앞으로 2년, 대표님이 준비해야 할 AI 트렌드</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>수강생 각자 사업 적용 결과 발표 (5분씩)</li>
                 <li>전체 피드백 + 개선 포인트 제안</li>
@@ -1991,7 +1960,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>앱 vs 웹앱 vs 챗봇 — 내 아이디어엔 뭐가 맞나</li>
                 <li>좋은 앱 기획서 vs 나쁜 앱 기획서 비교</li>
@@ -1999,7 +1968,7 @@
                 <li>비개발자가 개발자 없이 앱 만드는 현실적인 방법</li>
                 <li>답답노트 앱 제작 실제 과정 공개</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>내 앱 아이디어 1장으로 정리하기 (PRD 작성)</li>
                 <li>AI로 와이어프레임 5분 만들기</li>
@@ -2038,7 +2007,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>Bolt / v0 / Cursor — AI 개발 툴 3가지 비교</li>
                 <li>프롬프트로 화면 만드는 원리 이해하기</li>
@@ -2046,7 +2015,7 @@
                 <li>AI가 실수했을 때 수정 요청하는 법</li>
                 <li>데이터베이스 없이 앱 만드는 현실적 방법</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>Bolt로 내 앱 메인 화면 직접 만들기</li>
                 <li>디자인 수정 반복 실습 (프롬프트로 피드백)</li>
@@ -2085,7 +2054,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>MVP란 무엇인가 — 핵심 기능 2개만 먼저 완성하는 이유</li>
                 <li>사용자 테스트 하는 법 — 뭘 물어봐야 하나</li>
@@ -2093,7 +2062,7 @@
                 <li>앱 속도·안정성 기초 점검</li>
                 <li>출시 전 체크리스트 20가지</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>핵심 기능 2개 완성 집중 실습</li>
                 <li>수강생 간 앱 교차 테스트 & 피드백</li>
@@ -2132,7 +2101,7 @@
         <div class="week-detail">
           <div class="detail-grid">
             <div class="detail-block">
-              <div class="detail-block-title">🎓 이론 50분</div>
+              <div class="detail-block-title">🎓 이론 2시간</div>
               <ul class="detail-list">
                 <li>배포란 무엇인가 — 앱스토어 vs 웹 배포 차이</li>
                 <li>결제 기능 연결 원리 — 무료→유료 전환 구조</li>
@@ -2140,7 +2109,7 @@
                 <li>앱 출시 후 유지·업데이트 하는 법</li>
                 <li>수익화 모델 3가지 — 구독 / 일회성 / 광고</li>
               </ul>
-              <div class="detail-block-title" style="margin-top:20px;">💻 실습 60분</div>
+              <div class="detail-block-title" style="margin-top:20px;">💻 실습 50분</div>
               <ul class="detail-list">
                 <li>웹 배포 직접 해보기 (Vercel / Netlify)</li>
                 <li>결제 기능 연결 실습 (Stripe 기초)</li>
@@ -2506,30 +2475,8 @@
       window.scrollY > 60 ? '14px 60px' : '22px 60px';
   });
 
-  // ── Side nav active state on scroll ──
-  const sideNavLinks = document.querySelectorAll('.side-nav-link');
-  const sideNavSections = ['curriculum','pricing','cta','faq'].map(id => document.getElementById(id));
-
-  function updateSideNav() {
-    let current = '';
-    sideNavSections.forEach(sec => {
-      if (sec && window.scrollY >= sec.offsetTop - 200) current = sec.id;
-    });
-    sideNavLinks.forEach(link => {
-      link.classList.toggle('active', link.dataset.target === current);
-    });
-  }
-  window.addEventListener('scroll', updateSideNav);
-  updateSideNav();
 </script>
 
-<!-- ── Floating Side Navigation ── -->
-<nav class="side-nav">
-  <a class="side-nav-link" data-target="curriculum" href="#curriculum">커리큘럼</a>
-  <a class="side-nav-link" data-target="pricing" href="#pricing">수강료</a>
-  <a class="side-nav-link" data-target="cta" href="#cta">수강신청</a>
-  <a class="side-nav-link" data-target="faq" href="#faq">Q&amp;A</a>
-</nav>
 
 </body>
 </html>
