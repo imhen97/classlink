@@ -1028,6 +1028,16 @@
     color: var(--gold);
     letter-spacing: 0.05em;
   }
+  .inst-stat-project-link-btn {
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 6px 12px;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .inst-stat-project-link-btn:hover { background: rgba(201,168,76,0.1); }
 
   .inst-career { display: flex; flex-direction: column; gap: 28px; margin-bottom: 44px; }
 
@@ -2132,10 +2142,6 @@
       <div class="instructor-photo-box">
         <img src="instructor.png" alt="김해나 강사" class="instructor-photo">
       </div>
-      <div class="instructor-links">
-        <a href="https://gambak-note.pages.dev/" target="_blank" class="inst-link-btn">📱 답답노트 앱 보기 →</a>
-        <a href="https://www.eng-z.com/" target="_blank" class="inst-link-btn">🌐 잉즈 페이지 →</a>
-      </div>
     </div>
 
     <div class="instructor-content">
@@ -2158,12 +2164,12 @@
         <div class="inst-stat-divider"></div>
         <div class="inst-stat inst-stat-text">
           <div class="inst-stat-project-title">처음부터 끝까지 어플 제작</div>
-          <div class="inst-stat-project-link">답답노트 페이지</div>
+          <a href="https://gambak-note.pages.dev/" target="_blank" class="inst-stat-project-link inst-stat-project-link-btn">📱 답답노트 앱 보기 →</a>
         </div>
         <div class="inst-stat-divider"></div>
         <div class="inst-stat inst-stat-text">
           <div class="inst-stat-project-title">영어교육 시스템 직접 제작</div>
-          <div class="inst-stat-project-link">잉즈 페이지</div>
+          <a href="https://www.eng-z.com/" target="_blank" class="inst-stat-project-link inst-stat-project-link-btn">🌐 잉즈 페이지 →</a>
         </div>
       </div>
 
@@ -2213,8 +2219,7 @@
 
 <!-- ══════════ PRICING ══════════ -->
 <section class="pricing-section" id="pricing">
-  <div class="sec-label">수강료</div>
-  <h2 class="sec-title">직원 한 명 월급보다<br>저렴하게, <em>AI 팀</em>을.</h2>
+  <h2 class="sec-title">수강료 안내</h2>
 
   <!-- Tab switcher -->
   <div class="plan-tab-row">
