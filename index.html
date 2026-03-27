@@ -1478,6 +1478,39 @@
   }
 
   /* ══════════ FOOTER ══════════ */
+  /* ── Floating Side Nav ── */
+  .side-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .side-nav-link {
+    display: block;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 12px 6px;
+    border-right: 2px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .side-nav-link:hover,
+  .side-nav-link.active {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  @media (max-width: 768px) {
+    .side-nav { display: none; }
+  }
+
   footer {
     padding: 28px 80px;
     border-top: 1px solid var(--border);
@@ -2315,7 +2348,7 @@
 </section>
 
 <!-- ══════════ FAQ ══════════ -->
-<section class="faq-section">
+<section class="faq-section" id="faq">
   <div class="sec-label">자주 묻는 질문</div>
   <h2 class="sec-title">궁금한 점이<br>있으신가요?</h2>
   <div class="faq-list reveal">
@@ -2343,7 +2376,7 @@
 </section>
 
 <!-- ══════════ CTA ══════════ -->
-<section class="cta-section">
+<section class="cta-section" id="cta">
   <div style="position:relative; z-index:2;">
     <div class="sec-label" style="justify-content:center; margin-bottom:20px;">지금 바로 시작하세요</div>
     <h2 class="sec-title reveal">1기 정원이 마감되기 전에,<br>자리를 확보하세요.</h2>
@@ -2436,6 +2469,31 @@
     document.querySelector('nav').style.padding =
       window.scrollY > 60 ? '14px 60px' : '22px 60px';
   });
+
+  // ── Side nav active state on scroll ──
+  const sideNavLinks = document.querySelectorAll('.side-nav-link');
+  const sideNavSections = ['curriculum','pricing','cta','faq'].map(id => document.getElementById(id));
+
+  function updateSideNav() {
+    let current = '';
+    sideNavSections.forEach(sec => {
+      if (sec && window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    });
+    sideNavLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.target === current);
+    });
+  }
+  window.addEventListener('scroll', updateSideNav);
+  updateSideNav();
 </script>
+
+<!-- ── Floating Side Navigation ── -->
+<nav class="side-nav">
+  <a class="side-nav-link" data-target="curriculum" href="#curriculum">커리큘럼</a>
+  <a class="side-nav-link" data-target="pricing" href="#pricing">수강료</a>
+  <a class="side-nav-link" data-target="cta" href="#cta">수강신청</a>
+  <a class="side-nav-link" data-target="faq" href="#faq">Q&amp;A</a>
+</nav>
+
 </body>
 </html>
