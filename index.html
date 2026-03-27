@@ -365,6 +365,36 @@
   .sec-title em { font-style: italic; color: var(--gold); }
 
   /* ══════════ PAIN ══════════ */
+  /* ── AI Proof Banner ── */
+  .ai-proof-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 28px 40px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.06), transparent);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .ai-proof-icon {
+    color: var(--gold-dim);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .ai-proof-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(13px, 1.4vw, 16px);
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+  .ai-proof-text em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
   .pain-section {
     background: var(--bg2);
     border-top: 1px solid var(--border);
@@ -1695,6 +1725,13 @@
 
 </section>
 
+<!-- ══════════ AI PROOF BANNER ══════════ -->
+<div class="ai-proof-banner reveal">
+  <span class="ai-proof-icon">✦</span>
+  <p class="ai-proof-text">여러분이 지금 보고 계신 이 페이지도 <em>AI로 단 20분</em>만에 만들었습니다.</p>
+  <span class="ai-proof-icon">✦</span>
+</div>
+
 <!-- ══════════ PAIN ══════════ -->
 <section class="pain-section">
   <div class="sec-label">이런 분께 꼭 필요합니다</div>
@@ -2200,7 +2237,7 @@
 
       <div class="inst-stats">
         <div class="inst-stat">
-          <div class="inst-stat-num">500<span class="inst-stat-unit">%</span></div>
+          <div class="inst-stat-num">450<span class="inst-stat-unit">%</span></div>
           <div class="inst-stat-label">기존 대비 매출 증가</div>
         </div>
         <div class="inst-stat-divider"></div>
@@ -2234,7 +2271,7 @@
           <div class="inst-career-dot"></div>
           <div>
             <div class="inst-career-title">월 매출 1,000만원 이상 상승</div>
-            <div class="inst-career-desc">500% 이상</div>
+            <div class="inst-career-desc">450% 이상</div>
           </div>
         </div>
       </div>
