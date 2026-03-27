@@ -902,8 +902,74 @@
   /* ══════════ PRICING ══════════ */
   .pricing-section { background: var(--bg); }
 
+  /* Tab switcher */
+  .plan-tabs {
+    display: inline-flex;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .plan-tab {
+    padding: 12px 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .plan-tab.active { color: var(--bg); }
+
+  .plan-tab-badge {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  .plan-tabs[data-active="8"] .plan-tab:last-child .plan-tab-badge { opacity: 1; }
+
+  .plan-tab-slider {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 50%;
+    background: var(--gold);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  .plan-tabs[data-active="8"] .plan-tab-slider { transform: translateX(100%); }
+
+  .plan-save-tag {
+    display: inline-block;
+    margin-left: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 4px 10px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .plan-save-tag.visible { opacity: 1; }
+
   .pricing-box {
-    margin-top: 72px;
+    margin-top: 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
@@ -1577,13 +1643,31 @@
 <section class="pricing-section" id="pricing">
   <div class="sec-label">수강료</div>
   <h2 class="sec-title">직원 한 명 월급보다<br>저렴하게, <em>AI 팀</em>을.</h2>
-  <div class="pricing-box reveal">
+
+  <!-- Tab switcher -->
+  <div style="display:flex; align-items:center; gap:0; flex-wrap:wrap; gap:16px; margin-top:48px;">
+    <div class="plan-tabs" data-active="4">
+      <div class="plan-tab-slider"></div>
+      <div class="plan-tab active" data-plan="4">
+        4주 CEO 과정
+      </div>
+      <div class="plan-tab" data-plan="8">
+        8주 풀코스
+        <span class="plan-tab-badge">최대 15% 할인</span>
+      </div>
+    </div>
+    <span class="plan-save-tag" id="saveBadge">묶음 할인 적용 중</span>
+  </div>
+
+  <!-- 4주 플랜 -->
+  <div class="pricing-box reveal" id="plan4">
     <div class="price-card">
       <div class="price-tier">스탠다드</div>
       <div class="price-amount">49만</div>
-      <div class="price-unit">원 / 4주 과정</div>
+      <div class="price-unit">원 / 4주 CEO 과정</div>
       <ul class="price-features">
         <li>4주 온라인 라이브 강의</li>
+        <li>AI 자동화 · 사업 적용 실습</li>
         <li>실습 자료 · 템플릿 제공</li>
         <li>수강생 전용 커뮤니티</li>
         <li>수료증 발급</li>
@@ -1601,6 +1685,45 @@
         <li>수료 후 30일 질문 채널</li>
         <li>AI 시스템 점검 피드백</li>
         <li>다음 기수 무료 재수강권</li>
+      </ul>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-price">VIP 신청하기</a>
+    </div>
+  </div>
+
+  <!-- 8주 플랜 -->
+  <div class="pricing-box reveal" id="plan8" style="display:none;">
+    <div class="price-card">
+      <div class="price-tier">스탠다드</div>
+      <div class="price-amount">89만</div>
+      <div class="price-unit" style="display:flex; align-items:center; gap:10px;">
+        원 / 8주 풀코스
+        <span style="font-family:'DM Mono',monospace; font-size:9px; color:var(--gold); background:var(--gold-glow); border:1px solid var(--gold-dim); padding:2px 8px; letter-spacing:0.1em;">98만원 → 89만원</span>
+      </div>
+      <ul class="price-features">
+        <li>CEO 4주 과정 전체</li>
+        <li>앱 만들기 4주 과정 전체</li>
+        <li>AI 자동화 + 노코드 앱 개발 실습</li>
+        <li>실습 자료 · 템플릿 전체 제공</li>
+        <li>수강생 전용 커뮤니티</li>
+        <li>수료증 발급 (2종)</li>
+      </ul>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-price">신청하기</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-featured-bar"></div>
+      <div class="price-tier">VIP <span class="price-tier-badge">추천</span></div>
+      <div class="price-amount">139만</div>
+      <div class="price-unit" style="display:flex; align-items:center; gap:10px;">
+        원 / 8주 + 사후 지원
+        <span style="font-family:'DM Mono',monospace; font-size:9px; color:var(--gold); background:var(--gold-glow); border:1px solid var(--gold-dim); padding:2px 8px; letter-spacing:0.1em;">158만원 → 139만원</span>
+      </div>
+      <ul class="price-features">
+        <li>8주 스탠다드 전체 포함</li>
+        <li>1:1 개인 컨설팅 2회 (각 60분)</li>
+        <li>수료 후 60일 질문 채널</li>
+        <li>AI 시스템 + 앱 점검 피드백</li>
+        <li>다음 기수 무료 재수강권</li>
+        <li>완성 앱 배포 지원</li>
       </ul>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-price">VIP 신청하기</a>
     </div>
@@ -1690,6 +1813,32 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Pricing tab switcher ──
+  const planTabs = document.querySelector('.plan-tabs');
+  const plan4 = document.getElementById('plan4');
+  const plan8 = document.getElementById('plan8');
+  const saveBadge = document.getElementById('saveBadge');
+
+  document.querySelectorAll('.plan-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const plan = tab.dataset.plan;
+      planTabs.dataset.active = plan;
+
+      document.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      if (plan === '4') {
+        plan4.style.display = 'grid';
+        plan8.style.display = 'none';
+        saveBadge.classList.remove('visible');
+      } else {
+        plan4.style.display = 'none';
+        plan8.style.display = 'grid';
+        saveBadge.classList.add('visible');
+      }
     });
   });
 
