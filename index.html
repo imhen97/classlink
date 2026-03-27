@@ -1409,8 +1409,32 @@
     line-height: 1.8;
   }
 
+  .cta-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-meta-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    padding: 6px 16px;
+  }
+
+  .cta-meta-sep {
+    color: var(--muted2);
+    font-size: 12px;
+  }
+
   .cta-deadline {
-    margin-top: 28px;
+    margin-top: 16px;
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.25em;
@@ -2299,6 +2323,11 @@
     </p>
     <div style="position:relative; z-index:2;" class="reveal">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-gold" style="font-size:12px; padding:20px 56px;">지금 수강 신청 →</a>
+      <div class="cta-meta">
+        <span class="cta-meta-item">📅 모집기간 단 2주 · ~4/10 마감</span>
+        <span class="cta-meta-sep">·</span>
+        <span class="cta-meta-item">🔒 선착순 마감</span>
+      </div>
       <p class="cta-deadline">⚠ 1기 조기 마감 시 2기 일정 미정</p>
     </div>
   </div>
