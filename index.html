@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI CEO CLASS — 대표님을 위한 AI 실전 4주</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+KR:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --gold: #b8975a;
+    --gold-light: #d4b47a;
+    --rust: #c4593a;
+    --sage: #4a5c4e;
+    --text-muted: #6b6355;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184,151,90,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(74,92,78,0.08) 0%, transparent 50%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, transparent 100%);
+  }
+
+  nav {
+    position: relative; z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 60px;
+    border-bottom: 1px solid rgba(184,151,90,0.2);
+  }
+
+  .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+  }
+
+  .hero-content {
+    position: relative; z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 60px 40px;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--rust);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--rust);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 100px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 52px;
+    font-weight: 300;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 18px 44px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--ink);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--text-muted);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-bottom {
+    position: relative; z-index: 10;
+    padding: 28px 60px;
+    border-top: 1px solid rgba(184,151,90,0.2);
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .hero-right-deco {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    opacity: 0.06;
+    font-family: 'Playfair Display', serif;
+    font-size: 320px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 60px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain-section {
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pain-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(184,151,90,0.15), transparent);
+  }
+
+  .pain-section .section-label { color: var(--gold); }
+  .pain-section .section-title { color: var(--paper); }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .pain-item {
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.3s;
+  }
+
+  .pain-item:hover { background: rgba(184,151,90,0.08); }
+
+  .pain-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .pain-text {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .pain-text strong { color: var(--paper); font-weight: 600; }
+
+  /* ── CURRICULUM ── */
+  .curriculum-section { background: var(--cream); }
+
+  .week-list {
+    margin-top: 60px;
+    border-top: 1px solid rgba(14,14,14,0.12);
+  }
+
+  .week-item {
+    border-bottom: 1px solid rgba(14,14,14,0.12);
+    overflow: hidden;
+  }
+
+  .week-accordion {
+    display: flex;
+    gap: 40px;
+    cursor: pointer;
+    flex-direction: row;
+  }
+
+  .week-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: rgba(14,14,14,0.1);
+    line-height: 1;
+    padding-top: 48px;
+    flex-shrink: 0;
+    width: 80px;
+  }
+
+  .week-main { flex: 1; min-width: 0; }
+
+  .week-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 44px 0;
+  }
+
+  .week-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .week-accordion:hover .week-title { color: var(--gold); }
+
+  .week-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .week-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .week-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 6px 14px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .week-chevron {
+    font-size: 28px;
+    color: var(--gold);
+    transition: transform 0.35s ease;
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  .week-accordion.open .week-chevron { transform: rotate(45deg); }
+
+  .week-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.3s ease;
+    opacity: 0;
+  }
+
+  .week-accordion.open .week-detail {
+    max-height: 700px;
+    opacity: 1;
+    padding-bottom: 40px;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 40px;
+    padding: 36px 40px;
+    background: rgba(14,14,14,0.03);
+    border-left: 3px solid var(--gold);
+  }
+
+  .detail-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .detail-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .detail-list li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .detail-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .detail-note {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 12px 16px;
+    background: rgba(184,151,90,0.15);
+    border-left: 2px solid var(--gold);
+    margin-top: 4px;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-section { background: var(--paper); position: relative; }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .outcome-card {
+    padding: 44px 36px;
+    background: var(--cream);
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .outcome-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .outcome-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+
+  .outcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .outcome-desc { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
+
+  /* ── INSTRUCTOR ── */
+  .instructor-section {
+    background: var(--ink);
+    padding: 100px 60px;
+  }
+
+  .instructor-inner {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .instructor-photo-box {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,151,90,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .photo-icon { font-size: 48px; opacity: 0.3; }
+
+  .photo-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.25);
+    text-transform: uppercase;
+  }
+
+  .instructor-links { display: flex; flex-direction: column; gap: 10px; }
+
+  .inst-link-btn {
+    display: block;
+    padding: 13px 20px;
+    border: 1px solid rgba(184,151,90,0.3);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .inst-link-btn:hover {
+    background: rgba(184,151,90,0.1);
+    border-color: var(--gold);
+  }
+
+  .instructor-content .section-label { color: var(--gold); }
+
+  .instructor-name-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .instructor-name-tag::after {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .instructor-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 20px;
+  }
+
+  .instructor-name em { font-style: italic; color: var(--gold); }
+
+  .instructor-bio {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 44px;
+  }
+
+  .inst-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 48px;
+    padding: 32px 0;
+    border-top: 1px solid rgba(184,151,90,0.2);
+    border-bottom: 1px solid rgba(184,151,90,0.2);
+  }
+
+  .inst-stat { flex: 1; padding: 0 28px; }
+  .inst-stat:first-child { padding-left: 0; }
+
+  .inst-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .inst-stat-unit { font-size: 24px; font-weight: 700; }
+
+  .inst-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .inst-stat-divider {
+    width: 1px;
+    height: 52px;
+    background: rgba(184,151,90,0.2);
+    flex-shrink: 0;
+  }
+
+  .inst-career { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+
+  .inst-career-item { display: flex; gap: 18px; align-items: flex-start; }
+
+  .inst-career-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .inst-career-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 4px;
+  }
+
+  .inst-career-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.45);
+  }
+
+  .inst-quote {
+    border-left: 2px solid var(--gold);
+    padding: 16px 24px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.65);
+    background: rgba(184,151,90,0.06);
+  }
+
+  /* ── QUOTE SECTION ── */
+  .quote-section {
+    background: var(--sage);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 400px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    top: -80px; left: 40px;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--paper);
+    max-width: 800px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  .quote-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: rgba(245,240,232,0.5);
+    text-transform: uppercase;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section { background: var(--ink); color: var(--paper); }
+  .pricing-section .section-title { color: var(--paper); }
+
+  .pricing-box {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    max-width: 860px;
+  }
+
+  .price-card {
+    padding: 52px 44px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+
+  .price-card.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .price-card:hover:not(.featured) { background: rgba(255,255,255,0.07); }
+
+  .price-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.5);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .price-card.featured .price-tier { color: rgba(14,14,14,0.6); }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--paper);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .price-card.featured .price-amount { color: var(--ink); }
+
+  .price-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+
+  .price-card.featured .price-unit { color: rgba(14,14,14,0.5); }
+
+  .price-features { list-style: none; margin-bottom: 40px; }
+
+  .price-features li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.7);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 10px;
+  }
+
+  .price-card.featured .price-features li {
+    color: rgba(14,14,14,0.75);
+    border-color: rgba(14,14,14,0.08);
+  }
+
+  .price-features li::before { content: '→'; flex-shrink: 0; }
+
+  .btn-price {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--paper);
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .btn-price:hover { border-color: var(--gold); color: var(--gold); }
+
+  .price-card.featured .btn-price {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .price-card.featured .btn-price:hover {
+    background: rgba(14,14,14,0.8);
+  }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--cream); }
+
+  .faq-list { margin-top: 60px; border-top: 1px solid rgba(14,14,14,0.12); }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(14,14,14,0.12);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    cursor: pointer;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    user-select: none;
+    gap: 20px;
+  }
+
+  .faq-arrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding-bottom: 28px;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--paper);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,151,90,0.1), transparent);
+  }
+
+  .cta-section .section-title {
+    max-width: 680px;
+    margin: 0 auto 20px;
+  }
+
+  .cta-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .cta-deadline {
+    margin-top: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--rust);
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 60px;
+    border-top: 1px solid rgba(14,14,14,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero-content { padding: 40px 24px; }
+    .hero-bottom { padding: 24px; gap: 32px; flex-wrap: wrap; }
+    section { padding: 64px 24px; }
+    h1 { font-size: 48px; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .week-accordion { gap: 16px; }
+    .week-num { width: 50px; font-size: 28px; }
+    .week-header { padding: 28px 0; gap: 12px; }
+    .week-tag { display: none; }
+    .detail-grid { grid-template-columns: 1fr; gap: 28px; padding: 24px 20px; }
+    .week-right { flex-direction: row; align-items: center; }
+    .pricing-box { grid-template-columns: 1fr; }
+    .quote-section { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-right-deco { display: none; }
+    .instructor-section { padding: 64px 24px; }
+    .instructor-inner { grid-template-columns: 1fr; gap: 40px; }
+    .instructor-photo-box { aspect-ratio: 1/1; max-width: 240px; }
+    .inst-stats { gap: 0; }
+    .inst-stat { padding: 0 16px; }
+    .inst-stat-num { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-right-deco">AI</div>
+
+  <nav>
+    <div class="logo">AI CEO Class</div>
+    <div class="nav-right">2025 · 1기 모집</div>
+  </nav>
+
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow">대표님을 위한 실전 AI 과정</div>
+    <h1>직원보다 빠른<br><em>AI 팀</em>을<br>만드세요.</h1>
+    <p class="hero-sub">
+      4주 안에, 코딩 없이.<br>
+      반복 업무를 자동화하고, 매출로 이어지는 AI 시스템을 직접 구축합니다.
+    </p>
+    <div class="hero-cta-group">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-primary">수강 신청하기</a>
+      <a href="#curriculum" class="btn-ghost">커리큘럼 보기 →</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom reveal">
+    <div class="stat">
+      <span class="stat-num">4주</span>
+      <span class="stat-label">집중 과정</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">실무 적용</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">0줄</span>
+      <span class="stat-label">코딩 필요 없음</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">소수</span>
+      <span class="stat-label">정예 모집</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PAIN ══════════════ -->
+<section class="pain-section">
+  <div style="position:relative; z-index:2;">
+    <p class="section-label">이런 분께 꼭 필요합니다</p>
+    <h2 class="section-title">혹시 이런 생각,<br>해본 적 있으신가요?</h2>
+    <div class="pain-grid reveal">
+      <div class="pain-item">
+        <div class="pain-num">01</div>
+        <p class="pain-text">"AI가 중요하다는 건 아는데, <strong>우리 사업에 어떻게 써야 할지</strong> 모르겠다."</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">02</div>
+        <p class="pain-text">"ChatGPT는 써봤는데, <strong>실제 업무에 연결하는 방법을</strong> 모른다."</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">03</div>
+        <p class="pain-text">"반복되는 업무에 <strong>직원이 너무 많은 시간을 쓰고 있다.</strong>"</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">04</div>
+        <p class="pain-text">"AI 도구를 도입하려니 <strong>어디서 시작해야 할지</strong> 막막하다."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CURRICULUM ══════════════ -->
+<section class="curriculum-section" id="curriculum">
+  <p class="section-label">4주 커리큘럼</p>
+  <h2 class="section-title">매주, 바로 쓸 수 있는<br>도구를 손에 넣습니다.</h2>
+  <p style="margin-top:16px; font-size:15px; color:var(--text-muted); max-width:520px; line-height:1.7;">
+    클래스가 끝날 때마다 실제 결과물이 남습니다. 배운 내용을 다음 날부터 바로 사업에 적용할 수 있습니다.
+  </p>
+
+  <div class="week-list">
+
+    <!-- WEEK 1 -->
+    <div class="week-item week-accordion" data-week="1">
+      <div class="week-num">01</div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">내 사업의 AI 지도 그리기</div>
+            <p class="week-desc">어디에 AI를 붙이면 가장 빠른 효과가 날까? 업종별 AI 적용 사례와 나만의 자동화 지점을 찾습니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">진단 · 전략</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <ul class="detail-list">
+                <li>AI가 실제로 업무에서 하는 일 — 환상 vs 현실 정리</li>
+                <li>내 사업의 "시간 낭비 지점" 3가지 찾는 법</li>
+                <li>ChatGPT / Claude / Gemini — 언제 뭘 쓸까?</li>
+                <li>업종별 AI 적용 성공·실패 사례 분석</li>
+                <li>대표님 맞춤 AI 도입 우선순위 설정하기</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">Claude</span>
+                <span class="tool-tag">Notion AI</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">내 사업 맞춤 AI 활용 로드맵 1장</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-item week-accordion" data-week="2">
+      <div class="week-num">02</div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">반복 업무 자동화</div>
+            <p class="week-desc">견적서, 제안서, SNS 콘텐츠, 고객 응대 — 매일 소모되는 시간을 AI에게 넘깁니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">자동화 실습</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <ul class="detail-list">
+                <li>프롬프트 설계 기초 — 대표님처럼 일하는 AI 만들기</li>
+                <li>견적서 · 제안서 초안을 3분 안에 완성하는 템플릿</li>
+                <li>인스타 · 블로그 · 뉴스레터 콘텐츠 자동 생성 워크플로우</li>
+                <li>고객 문의 응대 자동화 (이메일 / 카카오채널)</li>
+                <li>Zapier / Make 없이 가능한 무료 자동화 루틴</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">Claude</span>
+                <span class="tool-tag">Make</span>
+                <span class="tool-tag">Notion</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">나만의 업무 자동화 템플릿 패키지</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-item week-accordion" data-week="3">
+      <div class="week-num">03</div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">나만의 AI 직원 만들기</div>
+            <p class="week-desc">우리 회사 말투와 지식으로 대답하는 맞춤형 AI 챗봇 · 도구를 코딩 없이 직접 구축합니다.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">구축 실습</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <ul class="detail-list">
+                <li>Custom GPT 만들기 — 우리 회사 전용 AI 비서 설정</li>
+                <li>회사 내부 문서·FAQ를 학습시킨 AI 지식베이스 구축</li>
+                <li>노코드로 AI 미니앱 만들기 (견적, 상담, 안내 등)</li>
+                <li>완성된 도구를 팀원·고객에게 공유하는 방법</li>
+                <li>유지보수 없이 운영하는 AI 시스템 설계 원칙</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">Custom GPT</span>
+                <span class="tool-tag">Claude Projects</span>
+                <span class="tool-tag">v0</span>
+                <span class="tool-tag">Bolt</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">우리 회사 전용 AI 챗봇 or 미니앱 1개</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-item week-accordion" data-week="4">
+      <div class="week-num">04</div>
+      <div class="week-main">
+        <div class="week-header">
+          <div>
+            <div class="week-title">AI 시스템 완성 & 사업 발표</div>
+            <p class="week-desc">3주간 구축한 AI 시스템을 사업에 완전히 이식합니다. 발표 + 피드백 세션으로 마무리.</p>
+          </div>
+          <div class="week-right">
+            <div class="week-tag">적용 · 발표</div>
+            <div class="week-chevron">﹢</div>
+          </div>
+        </div>
+        <div class="week-detail">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-block-title">📌 이런 걸 배웁니다</div>
+              <ul class="detail-list">
+                <li>AI 도입 전/후 시간·비용 비교 측정하는 법</li>
+                <li>팀원에게 AI 도구 전파하는 내부 교육 설계</li>
+                <li>AI 시스템이 망가졌을 때 대응하는 법</li>
+                <li>수강생 사업 발표 — 3주간 만든 것 공유 & 피드백</li>
+                <li>앞으로의 AI 트렌드와 대표님이 준비해야 할 것</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-block-title">🛠 사용 도구</div>
+              <div class="tool-tags">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">Claude</span>
+                <span class="tool-tag">Make</span>
+                <span class="tool-tag">Notion</span>
+              </div>
+              <div class="detail-block-title">🎯 수업 후 결과물</div>
+              <p class="detail-note">내 사업 AI 전환 완성본 + 수료증</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ OUTCOMES ══════════════ -->
+<section class="outcomes-section">
+  <p class="section-label">수료 후 달라지는 것들</p>
+  <h2 class="section-title">4주 뒤, 대표님의<br>하루가 바뀝니다.</h2>
+  <div class="outcomes-grid reveal">
+    <div class="outcome-card">
+      <span class="outcome-icon">⏱</span>
+      <div class="outcome-title">월 40시간 이상 절약</div>
+      <p class="outcome-desc">반복 업무를 AI에게 위임하고, 대표님은 더 중요한 일에 집중합니다.</p>
+    </div>
+    <div class="outcome-card">
+      <span class="outcome-icon">🤖</span>
+      <div class="outcome-title">나만의 AI 시스템 보유</div>
+      <p class="outcome-desc">우리 회사에 딱 맞는 AI 워크플로우를 직접 만들고, 수업 후에도 운용합니다.</p>
+    </div>
+    <div class="outcome-card">
+      <span class="outcome-icon">📈</span>
+      <div class="outcome-title">비용 절감 & 매출 연결</div>
+      <p class="outcome-desc">인건비·외주비를 줄이고, AI로 만든 콘텐츠와 시스템이 매출로 이어집니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ INSTRUCTOR ══════════════ -->
+<section class="instructor-section" id="instructor">
+  <div class="instructor-inner reveal">
+    <div class="instructor-photo-col">
+      <div class="instructor-photo-box">
+        <span class="photo-icon">👤</span>
+        <span class="photo-text">사진 추가 예정</span>
+      </div>
+      <div class="instructor-links">
+        <a href="https://gambak-note.pages.dev/" target="_blank" class="inst-link-btn">
+          📱 답답노트 앱 보기 →
+        </a>
+        <a href="https://www.eng-z.com/" target="_blank" class="inst-link-btn">
+          🌐 잉즈 페이지 →
+        </a>
+      </div>
+    </div>
+
+    <div class="instructor-content">
+      <p class="section-label">강사 소개</p>
+      <div class="instructor-name-tag">김해나</div>
+      <h2 class="instructor-name">비개발자가<br><em>앱을 만들었습니다.</em></h2>
+
+      <p class="instructor-bio">
+        코딩을 한 줄도 몰랐습니다. IT 전공도 아니었습니다.
+        영어 강사로 시작해 AI 도구만으로 앱을 개발하고,
+        강의 매출을 350% 끌어올렸습니다.
+        대표님들이 어디서 막히는지 — 직접 겪었기에 정확히 압니다.
+      </p>
+
+      <div class="inst-stats">
+        <div class="inst-stat">
+          <div class="inst-stat-num">350<span class="inst-stat-unit">%</span></div>
+          <div class="inst-stat-label">기존 대비 매출 증가</div>
+        </div>
+        <div class="inst-stat-divider"></div>
+        <div class="inst-stat">
+          <div class="inst-stat-num">1000<span class="inst-stat-unit">만+</span></div>
+          <div class="inst-stat-label">AI 강의 월 매출</div>
+        </div>
+        <div class="inst-stat-divider"></div>
+        <div class="inst-stat">
+          <div class="inst-stat-num">0<span class="inst-stat-unit">줄</span></div>
+          <div class="inst-stat-label">코딩 경험</div>
+        </div>
+      </div>
+
+      <div class="inst-career">
+        <div class="inst-career-item">
+          <div class="inst-career-dot"></div>
+          <div>
+            <div class="inst-career-title">영어 교육 사업 운영</div>
+            <div class="inst-career-desc">영어 강사로 시작, AI 도입 후 수업 운영 방식을 전면 재설계하여 효율 극대화</div>
+          </div>
+        </div>
+        <div class="inst-career-item">
+          <div class="inst-career-dot"></div>
+          <div>
+            <div class="inst-career-title">영단어장 앱 <strong>답답노트</strong> 개발 · 출시</div>
+            <div class="inst-career-desc">비개발자로서 100% AI 툴만 활용해 앱스토어 출시까지 완료</div>
+          </div>
+        </div>
+        <div class="inst-career-item">
+          <div class="inst-career-dot"></div>
+          <div>
+            <div class="inst-career-title">AI 자동화 강의로 월 매출 1,000만원 돌파</div>
+            <div class="inst-career-desc">기존 수입 대비 350% 이상 — 강의 내용을 강사 본인이 먼저 증명</div>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="inst-quote">
+        "저는 여러분과 똑같이 코딩을 모르고, 기술을 모르고 시작했습니다.<br>
+        그래서 대표님들이 어디서 막히는지 정확히 압니다."
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ QUOTE ══════════════ -->
+<div class="quote-section">
+  <p class="quote-text">
+    "AI를 쓰는 사람과 쓰지 않는 사람의 격차는,<br>
+    지금 이 순간에도 벌어지고 있습니다."
+  </p>
+  <p class="quote-author">— AI CEO Class, 2025</p>
+</div>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section class="pricing-section">
+  <p class="section-label">수강료</p>
+  <h2 class="section-title">직원 한 명 월급보다<br>저렴하게, AI 팀을.</h2>
+  <div class="pricing-box reveal">
+    <div class="price-card">
+      <div class="price-tier">스탠다드</div>
+      <div class="price-amount">49만</div>
+      <div class="price-unit">원 / 4주 과정</div>
+      <ul class="price-features">
+        <li>4주 온라인 라이브 강의</li>
+        <li>실습 자료 · 템플릿 제공</li>
+        <li>수강생 전용 커뮤니티</li>
+        <li>수료증 발급</li>
+      </ul>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-price">신청하기</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tier">VIP · 추천</div>
+      <div class="price-amount">79만</div>
+      <div class="price-unit">원 / 4주 + 사후 지원</div>
+      <ul class="price-features">
+        <li>스탠다드 전체 포함</li>
+        <li>1:1 개인 컨설팅 1회 (60분)</li>
+        <li>수료 후 30일 질문 채널</li>
+        <li>AI 시스템 점검 피드백</li>
+        <li>다음 기수 무료 재수강권</li>
+      </ul>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-price">VIP 신청하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="faq-section">
+  <p class="section-label">자주 묻는 질문</p>
+  <h2 class="section-title">궁금한 점이 있으신가요?</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q">컴퓨터를 잘 못 해도 들을 수 있나요? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">네, 코딩이나 IT 지식이 전혀 없어도 됩니다. 실제로 스마트폰과 PC 기본 사용만 가능하면 충분합니다. 강의는 비개발자 대표님 기준으로 설계되어 있습니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">온라인인가요, 오프라인인가요? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">라이브 온라인 강의로 진행됩니다. 매주 정해진 시간에 실시간으로 강의하며, 녹화본도 제공되어 일정이 맞지 않는 경우에도 수강하실 수 있습니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">유료 툴을 별도로 구입해야 하나요? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">대부분의 실습은 무료 툴로 진행됩니다. 일부 고급 기능에서 월 $20 이하의 구독이 필요할 수 있으나, 필수가 아닌 선택 사항입니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">환불 정책은 어떻게 되나요? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">강의 시작 전 100%, 1주차 종료 후 50% 환불 가능합니다. 2주차 이후에는 환불이 어렵습니다. 자세한 내용은 문의 주시기 바랍니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">강의는 언제, 몇 시에 진행되나요? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">개강일과 수업 시간은 모집 마감 후 수강생 일정을 취합하여 결정됩니다. 신청서에 선호 시간대를 기재해 주시면 최대한 반영하겠습니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta-section">
+  <div style="position:relative; z-index:2;">
+    <p class="section-label">지금 바로 시작하세요</p>
+    <h2 class="section-title reveal">1기 정원이 마감되기 전에,<br>자리를 확보하세요.</h2>
+    <p class="cta-sub reveal">
+      소수 정예로 운영합니다.<br>
+      대표님 한 분 한 분의 사업에 맞는 피드백을 드리기 위해, 인원을 제한합니다.
+    </p>
+    <div style="position:relative; z-index:2;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5RLBUUrmAb90BB3W1SqJLH3xcpL3DZbzIMQGbcSPcwehZrg/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="font-size:13px; padding:20px 52px;">지금 수강 신청 →</a>
+      <p class="cta-deadline">⚠ 1기 조기 마감 시 2기 일정 미정</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <span>© 2025 AI CEO Class</span>
+  <span>문의: 인스타그램 DM</span>
+</footer>
+
+<script>
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Hero immediate reveal
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 200 + i * 150);
+  });
+
+  // ── Week accordion ──
+  document.querySelectorAll('.week-accordion').forEach(item => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.week-accordion').forEach(w => w.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
